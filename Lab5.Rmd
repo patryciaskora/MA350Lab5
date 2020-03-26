@@ -1,9 +1,25 @@
 ---
 title: "Lab5"
 output: html_document
+author: Patricia Skora, Taylor O'Rourke
 ---
 
-HI TAYLOR
-HI TAYLOT PART 2
+# Lab 5
 
+## Problem 0
+
+Our github repo is https://github.com/patryciaskora/MA350Lab5.git. I'm working on RStudio on my personal computer and Taylor is working on RStudio Cloud. 
+
+## Problem 1
+```{r}
+x <- c(2.2, 7.8, -4.4, 0.0, 1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
+quantile(x)
+```
+
+The first quartile is -4.525 and the third quartile is 4.9. The interquartile range is Q3 - Q1 which would be 4.9 - -4.525 = 9.425.
+
+## Problem 2
+```{r}
+
+```
 
