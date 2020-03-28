@@ -20,6 +20,77 @@ The first quartile is -4.525 and the third quartile is 4.9. The interquartile ra
 
 ## Problem 2
 ```{r}
+#' This function calculates the different quartiles of a set of data using R's built in
+#' quantiles() function. It will also calculate the interquartile range based on Tukey's 
+#' Rule.
+#'
+#' @param values A vector containing the values to have quartiles calculated.
+#'
+#' @return A vector with named components of the first, third, and  interquartile range 
+#'         calculated for the argument sent.
+quartiles <- function(values){
+  quants <- quantile(values)
+  first <- quants[["25%"]]
+  third <- quants[["75%"]]
+  quartRange <- third - first
+  
+  result <- c("first" = first, "third" = third, "range" = quartRange)
+  return(result)
+}
+quartiles(x)
+```
+As seen from calling the function above with the vector x, we get the same result as what we calculated above.
 
+## Problem 3
+
+According to Tukey's Law, the points that would be identified as outliers is 28.7 by inspection and the formula.
+
+## Problem 4
+```{r}
+#' A function that uses the function from above (quartiles()) to calculate the respective 
+#' quartiles and interquartile range for a vector of data and checks whether the values 
+#' calculated fall under an outlier using Tukey's rule.
+#'
+#' @param values The vector of data to run the quartile test on.
+#'
+#' @returns A boolean vector called result that has elements of FALSE if the value in the 
+#'          argument passed are not outliers according to Tukey's rule and TRUE otherwrise.
+tukey.outlier <- function(values){
+  show(values)
+  result <- vector(length = length(values))
+  response <- quartiles(values)
+  intRange <- response["range"]
+  Q1 <- response["first"]
+  Q3 <- response["third"]
+  
+  for(val in 1:length(values)){
+    if(values[val] < Q1-1.5*intRange | values[val] > Q3 + 1.5*intRange){
+      result[val] <- TRUE
+    } else{
+      result[val] <- FALSE
+    }
+  }
+  return(result)
+}
+tukey.outlier(x)
+```
+Our function tukey.outlier works as expected, returning the same TRUE value (28.7) that we calculated above.
+
+## Problem 5
+```{r}
+#' This function is designed to test a previously written function called tukey.outlier.
+#'
+#' @param fun A function to be tested against.
+#'
+#' @return A boolean value of either TRUE if the function correctly identifies the outliers 
+#'         and FALSE otherwise.
+test.tukey.outlier <- function(fun = tukey.outlier()){
+  
+}
+```
+
+## Problem 6
+```{r}
+negx <- x * -1
 ```
 
