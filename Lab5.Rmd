@@ -86,11 +86,20 @@ Our function tukey.outlier works as expected, returning the same TRUE value (28.
 #'         and FALSE otherwise.
 test.tukey.outlier <- function(fun = tukey.outlier){
   x <- c(2.2, 7.8, -4.4, 0.0, 1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
+  negx <- c(-2.2, -7.8, 4.4, 0.0, -1.2, -3.9, -4.9, 5.7, 7.9, 4.9, -28.7, -4.9)
+  thirdx <- c(0.22, 0.78, -0.44, 0.00, 0.12, 0.39, 0.49, -0.57, -.79, -.49, 2.87, .49)
   testBool <- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
-  functiontest <- fun(x)
-  testvec <- testBool == functiontest
+  testBool.negx <- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
+  testBool.thirdx <- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
+  functiontest.x <- fun(x)
+  functiontest.negx <- fun(negx)
+  functiontest.thirdx <- fun(thirdx)
+  testvec <- testBool == functiontest.x
+  testvec.negx <- testBool == functiontest.negx
+  testvec.thirdx <- testBool == functiontest.thirdx
+  results <- c("x" = sum(testvec) == 12, "negx" = sum(testvec.negx) == 12, "thirdx" = sum(testvec.thirdx) == 12)
   
-  return(sum(testvec) == 12)
+  return(results)
 }
 test.tukey.outlier(tukey.outlier)
 ```
@@ -98,5 +107,32 @@ test.tukey.outlier(tukey.outlier)
 ## Problem 6
 ```{r}
 negx <- x * -1
+negx
+quartiles(negx)
 ```
-Hi Patrycia
+The only outlier in negx is -28.7
+
+## Problem 7/8
+
+```{r}
+test.tukey.outlier(tukey.outlier)
+```
+
+## Problem 9
+
+```{r}
+thirdx <- x * 0.1
+quartiles(thirdx)
+thirdx
+```
+The only outlier in thirdx is 2.87.
+
+## Problem 10/11
+
+```{r}
+test.tukey.outlier(tukey.outlier)
+```
+
+
+
+

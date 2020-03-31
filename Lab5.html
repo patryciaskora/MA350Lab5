@@ -450,13 +450,67 @@ tukey.outlier(x)</code></pre>
 #'
 #' @return A boolean value of either TRUE if the function correctly identifies the outliers 
 #'         and FALSE otherwise.
-test.tukey.outlier &lt;- function(fun = tukey.outlier()){
+test.tukey.outlier &lt;- function(fun = tukey.outlier){
+  x &lt;- c(2.2, 7.8, -4.4, 0.0, 1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
+  negx &lt;- c(-2.2, -7.8, 4.4, 0.0, -1.2, -3.9, -4.9, 5.7, 7.9, 4.9, -28.7, -4.9)
+  thirdx &lt;- c(0.22, 0.78, -0.44, 0.00, 0.12, 0.39, 0.49, -0.57, -.79, -.49, 2.87, .49)
+  testBool &lt;- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
+  testBool.negx &lt;- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
+  testBool.thirdx &lt;- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
+  functiontest.x &lt;- fun(x)
+  functiontest.negx &lt;- fun(negx)
+  functiontest.thirdx &lt;- fun(thirdx)
+  testvec &lt;- testBool == functiontest.x
+  testvec.negx &lt;- testBool == functiontest.negx
+  testvec.thirdx &lt;- testBool == functiontest.thirdx
+  results &lt;- c(&quot;x&quot; = sum(testvec) == 12, &quot;negx&quot; = sum(testvec.negx) == 12, &quot;thirdx&quot; = sum(testvec.thirdx) == 12)
   
-}</code></pre>
+  return(results)
+}
+test.tukey.outlier(tukey.outlier)</code></pre>
+<pre><code>##  [1]  2.2  7.8 -4.4  0.0  1.2  3.9  4.9 -5.7 -7.9 -4.9 28.7  4.9
+##  [1]  -2.2  -7.8   4.4   0.0  -1.2  -3.9  -4.9   5.7   7.9   4.9 -28.7  -4.9
+##  [1]  0.22  0.78 -0.44  0.00  0.12  0.39  0.49 -0.57 -0.79 -0.49  2.87  0.49</code></pre>
+<pre><code>##      x   negx thirdx 
+##   TRUE   TRUE   TRUE</code></pre>
 </div>
 <div id="problem-6" class="section level2">
 <h2>Problem 6</h2>
-<pre class="r"><code>negx &lt;- x * -1</code></pre>
+<pre class="r"><code>negx &lt;- x * -1
+negx</code></pre>
+<pre><code>##  [1]  -2.2  -7.8   4.4   0.0  -1.2  -3.9  -4.9   5.7   7.9   4.9 -28.7  -4.9</code></pre>
+<pre class="r"><code>quartiles(negx)</code></pre>
+<pre><code>##  first  third  range 
+## -4.900  4.525  9.425</code></pre>
+<p>The only outlier in negx is -28.7</p>
+</div>
+<div id="problem-78" class="section level2">
+<h2>Problem 7/8</h2>
+<pre class="r"><code>test.tukey.outlier(tukey.outlier)</code></pre>
+<pre><code>##  [1]  2.2  7.8 -4.4  0.0  1.2  3.9  4.9 -5.7 -7.9 -4.9 28.7  4.9
+##  [1]  -2.2  -7.8   4.4   0.0  -1.2  -3.9  -4.9   5.7   7.9   4.9 -28.7  -4.9
+##  [1]  0.22  0.78 -0.44  0.00  0.12  0.39  0.49 -0.57 -0.79 -0.49  2.87  0.49</code></pre>
+<pre><code>##      x   negx thirdx 
+##   TRUE   TRUE   TRUE</code></pre>
+</div>
+<div id="problem-9" class="section level2">
+<h2>Problem 9</h2>
+<pre class="r"><code>thirdx &lt;- x * 0.1
+quartiles(thirdx)</code></pre>
+<pre><code>##   first   third   range 
+## -0.4525  0.4900  0.9425</code></pre>
+<pre class="r"><code>thirdx</code></pre>
+<pre><code>##  [1]  0.22  0.78 -0.44  0.00  0.12  0.39  0.49 -0.57 -0.79 -0.49  2.87  0.49</code></pre>
+<p>The only outlier in thirdx is 2.87.</p>
+</div>
+<div id="problem-1011" class="section level2">
+<h2>Problem 10/11</h2>
+<pre class="r"><code>test.tukey.outlier(tukey.outlier)</code></pre>
+<pre><code>##  [1]  2.2  7.8 -4.4  0.0  1.2  3.9  4.9 -5.7 -7.9 -4.9 28.7  4.9
+##  [1]  -2.2  -7.8   4.4   0.0  -1.2  -3.9  -4.9   5.7   7.9   4.9 -28.7  -4.9
+##  [1]  0.22  0.78 -0.44  0.00  0.12  0.39  0.49 -0.57 -0.79 -0.49  2.87  0.49</code></pre>
+<pre><code>##      x   negx thirdx 
+##   TRUE   TRUE   TRUE</code></pre>
 </div>
 </div>
 
