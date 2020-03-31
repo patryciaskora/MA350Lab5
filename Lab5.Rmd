@@ -87,8 +87,8 @@ Our function tukey.outlier works as expected, returning the same TRUE value (28.
 test.tukey.outlier <- function(fun = tukey.outlier){
   x <- c(2.2, 7.8, -4.4, 0.0, 1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
   testBool <- c(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE)
-  test <- fun(x)
-  testvec <- testBool == test
+  functiontest <- fun(x)
+  testvec <- testBool == functiontest
   
   return(sum(testvec) == 12)
 }
