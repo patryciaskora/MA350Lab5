@@ -99,4 +99,4 @@ test.tukey.outlier(tukey.outlier)
 ```{r}
 negx <- x * -1
 ```
-
+Hi Patrycia
